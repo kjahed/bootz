@@ -142,7 +142,7 @@ func (m *InMemoryEntityManager) populateAuthzConfig(ch *epb.Chassis) (*apb.Uploa
 		return gnsiAuthzReq, nil
 	}
 	if gnsiAuthzReqFile == "" {
-		return nil, status.Errorf(codes.NotFound, "Could not populate authz config, please add config in inventory file")
+		return nil, nil
 	}
 	data, err := os.ReadFile(gnsiAuthzReqFile)
 	if err != nil {
@@ -193,7 +193,7 @@ func (m *InMemoryEntityManager) GetBootstrapData(ctx context.Context, chassis *s
 		BootPasswordHash: chassis.BootloaderPasswordHash,
 		ServerTrustCert:  base64.StdEncoding.EncodeToString(m.secArtifacts.TrustAnchor.Raw),
 		BootConfig:       chassis.BootConfig,
-		Credentials:      &bpb.Credentials{},
+		// Credentials:      &bpb.Credentials{},
 		// TODO: Populate pathz, authz and certificates.
 		Authz: chassis.Authz,
 	}, nil
