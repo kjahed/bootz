@@ -136,7 +136,7 @@ func (m *InMemoryEntityManager) populateAuthzConfig(ch *epb.Chassis) (*apb.Uploa
 	gnsiAuthzReq := gnsiConf.GetAuthzUpload()
 	gnsiAuthzReqFile := gnsiConf.GetAuthzUploadFile()
 	if gnsiAuthzReqFile == "" {
-		gnsiAuthzReqFile = m.defaults.GnsiGlobalConfig.GetAuthzUploadFile()
+		gnsiAuthzReqFile = m.defaults.GetGnsiGlobalConfig().GetAuthzUploadFile()
 	}
 	if gnsiAuthzReq.GetPolicy() != "" && gnsiAuthzReq.GetVersion() != "" {
 		return gnsiAuthzReq, nil
